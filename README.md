@@ -1,6 +1,6 @@
 # gramcracker
 
-A stripped-down Instagram API subset proxy, adding support for cross-origin requests.
+A proxy for a super stripped-down subset of the Instagram API, adding support for cross-origin requests.
 
 This is only exposing the bare-minimum routes and payloads that I happen to need at the moment, but feel free to open issues or pull requests if there's anything else you'd like to see in here.
 
