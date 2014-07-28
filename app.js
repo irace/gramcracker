@@ -11,8 +11,6 @@ app.get('/tag/:name', function (request, response) {
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'
   });
 
-  console.log('Access-Control-Allow-Origin: ' + response.get('Access-Control-Allow-Origin'));
-
   posts_for_tag(request.params.name, function (posts) {
     response.json(posts);
   });
@@ -20,14 +18,14 @@ app.get('/tag/:name', function (request, response) {
 
 function posts_for_tag (name, callback) {
   var query = qs.stringify({
-    cout: 3,
+    count: 3,
     client_id: process.env.INSTAGRAM_CLIENT_ID
   });
 
   var url = 'https://api.instagram.com/v1/tags/' + name + '/media/recent?' + query;
 
-  request(url, function (ig_error, ig_response, ig_body) {
-    var posts = JSON.parse(ig_body).data;
+  request(url, function (error, response, body) {
+    var posts = JSON.parse(body).data;
 
     var results = _(posts).map(function (post) {
       return {
