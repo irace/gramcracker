@@ -7,9 +7,10 @@ var _       = require('underscore')
 app.get('/tag/:name', function (request, response) {
   posts_for_tag(request.params.name, function (posts) {
     response.set({
-      'Access-Control-Allow-Origin', '*',
-      'Access-Control-Allow-Headers', 'X-Requested-With'
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'X-Requested-With'
     });
+
     response.json(posts);
   });
 });
