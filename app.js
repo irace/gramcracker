@@ -4,13 +4,14 @@ var _       = require('underscore')
   , express = require('express')
   , app     = express();
 
-app.get('/tag/:name', function (request, response) {
+app.all('*', function (request, response, next) {
   response.set({
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'
+    'Access-Control-Allow-Headers': 'X-Requested-With'
   });
+});
 
+app.get('/tag/:name', function (request, response) {
   posts_for_tag(request.params.name, function (posts) {
     response.json(posts);
   });
@@ -18,7 +19,6 @@ app.get('/tag/:name', function (request, response) {
 
 function posts_for_tag (name, callback) {
   var query = qs.stringify({
-    count: 3,
     client_id: process.env.INSTAGRAM_CLIENT_ID
   });
 
