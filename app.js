@@ -4,13 +4,18 @@ var _       = require('underscore')
   , express = require('express')
   , app     = express();
 
+app.all('*', function (request, response, next) {
+  response.set({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'
+  });
+
+  next();
+});
+
 app.get('/tag/:name', function (request, response) {
   posts_for_tag(request.params.name, function (posts) {
-    response.set({
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'X-Requested-With'
-    });
-
     response.json(posts);
   });
 });
