@@ -13,7 +13,7 @@ app.get('/tag/:name', function (request, response) {
 function posts_for_tag (name, callback) {
   var query = qs.stringify({
     cout: 3,
-    client_id: '334f847becff49f3910fed6dc13f2683'
+    client_id: process.env.INSTAGRAM_CLIENT_ID
   });
 
   var url = 'https://api.instagram.com/v1/tags/' + name + '/media/recent?' + query;
