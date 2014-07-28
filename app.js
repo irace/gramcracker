@@ -9,6 +9,8 @@ app.all('*', function (request, response, next) {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'X-Requested-With'
   });
+
+  next();
 });
 
 app.get('/tag/:name', function (request, response) {
