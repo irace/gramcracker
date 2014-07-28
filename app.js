@@ -11,6 +11,8 @@ app.get('/tag/:name', function (request, response) {
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'
   });
 
+  console.log('Access-Control-Allow-Origin: ' + response.get('Access-Control-Allow-Origin'));
+
   posts_for_tag(request.params.name, function (posts) {
     response.json(posts);
   });
