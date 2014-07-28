@@ -4,6 +4,12 @@ var _       = require('underscore')
   , express = require('express')
   , app     = express();
 
+app.all('/', function (request, response, next) {
+  response.header('Access-Control-Allow-Origin', '*');
+  response.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  next();
+});
+
 app.get('/tag/:name', function (request, response) {
   posts_for_tag(request.params.name, function (posts) {
     response.json(posts);
