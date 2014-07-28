@@ -32,7 +32,7 @@ function posts_for_tag (name, callback) {
     var results = _(posts).map(function (post) {
       return {
         link: post.link,
-        image: post.images['standard_resolution'].url
+        photo: post.images['standard_resolution'].url
       };
     });
 
